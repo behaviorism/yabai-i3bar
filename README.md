@@ -1,4 +1,4 @@
-# i3 Tabbed Mode Übersicht
+# Yabai i3 Tabbed Mode
 
 Simple [Übersicht](https://github.com/felixhageloh/uebersicht) widget i3 tabbed mode status bar for [yabai](https://github.com/koekeishiya/yabai).
 
@@ -7,5 +7,5 @@ Simple [Übersicht](https://github.com/felixhageloh/uebersicht) widget i3 tabbed
 Clone to widgets repository.
 
 ```bash
-$ git clone https://github.com/behaviorism/yabai-i3-tabbed-mode $HOME/Library/Application\ Support/Übersicht/widgets/yabai-i3-tabbed-mode
+git clone https://github.com/behaviorism/yabai-i3-tabbed-mode $HOME/Library/Application\ Support/Übersicht/widgets/yabai-i3-tabbed-mode
 ```
