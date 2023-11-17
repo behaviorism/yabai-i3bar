@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
 import { css, run } from "uebersicht";
 
-const APP_ID = "i3-tabs-index-jsx";
+const WIDGET_ID = "yabai-i3-tabbed-mode-index-jsx"
 const YABAI_PATH = "/usr/local/bin/yabai";
 
-export const command = `sh i3-tabs/command.sh ${APP_ID} ${YABAI_PATH}`;
+export const command = `sh ${WIDGET_ID.replace("-index-jsx", "")}/command.sh ${WIDGET_ID} ${YABAI_PATH}`;
 export const refreshFrequency = false;
 
 const statusBar = css({
