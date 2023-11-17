@@ -7,5 +7,5 @@ Simple [Übersicht](https://github.com/felixhageloh/uebersicht) widget i3 tabbed
 Clone to widgets repository.
 
 ```bash
-$ git clone https://github.com/behaviorism/yabai-i3-tabbed-mode-ubersicht $HOME/Library/Application\ Support/Übersicht/widgets/yabai-i3-tabbed-mode
+$ git clone https://github.com/behaviorism/yabai-i3-tabbed-mode $HOME/Library/Application\ Support/Übersicht/widgets/yabai-i3-tabbed-mode
 ```
