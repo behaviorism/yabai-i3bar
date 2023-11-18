@@ -1,10 +1,13 @@
 // eslint-disable-next-line import/no-unresolved
 import { css, run } from "uebersicht";
 
-const WIDGET_ID = "yabai-i3-tabbed-mode-index-jsx"
+const WIDGET_ID = "yabai-i3-tabbed-mode-index-jsx";
 const YABAI_PATH = "/usr/local/bin/yabai";
 
-export const command = `sh ${WIDGET_ID.replace("-index-jsx", "")}/command.sh ${WIDGET_ID} ${YABAI_PATH}`;
+export const command = `sh ${WIDGET_ID.replace(
+  "-index-jsx",
+  ""
+)}/command.sh ${WIDGET_ID} ${YABAI_PATH}`;
 export const refreshFrequency = false;
 
 const statusBar = css({
@@ -39,24 +42,34 @@ const focusedTab = css({
 });
 
 export const render = ({ output }) => {
-  const { windows, spaces } = JSON.parse(output);
+  const { windows, space } = JSON.parse(output);
+
+  const isStacked = space.type === "stack";
+
+  if (!isStacked) {
+    return (
+      <div className={statusBar}>
+        <div className={focusedTab}>{windows[0]?.title}</div>
+      </div>
+    );
+  }
+
+  const sortedWindows = windows.sort(
+    (a, b) => a["stack-index"] - b["stack-index"]
+  );
 
   return (
     <div className={statusBar}>
-      {spaces.map((space, index) => {
-        const currentWindow = windows.find(
-          (window) => window.space === space.index
-        );
-
+      {sortedWindows.map((window, index) => {
         return (
           <div
             onClick={() => {
-              run(`${YABAI_PATH} -m space --focus ${index + 1}`);
+              run(`${YABAI_PATH} -m window --focus ${window.id}`);
             }}
             key={index}
-            className={space["has-focus"] ? focusedTab : unfocusedTab}
+            className={window["has-focus"] ? focusedTab : unfocusedTab}
           >
-            {currentWindow?.title}
+            {window.title}
           </div>
         );
       })}
