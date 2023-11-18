@@ -44,17 +44,21 @@ const focusedTab = css({
 export const render = ({ output }) => {
   const { windows, space } = JSON.parse(output);
 
+  const activeWindows = windows.filter(
+    (window) => !window["is-minimized"] && !window["is-hidden"]
+  );
+
   const isStacked = space.type === "stack";
 
   if (!isStacked) {
     return (
       <div className={statusBar}>
-        <div className={focusedTab}>{windows[0]?.title}</div>
+        <div className={focusedTab}>{activeWindows[0]?.title}</div>
       </div>
     );
   }
 
-  const sortedWindows = windows.sort(
+  const sortedWindows = activeWindows.sort(
     (a, b) => a["stack-index"] - b["stack-index"]
   );
 

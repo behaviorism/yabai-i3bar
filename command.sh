@@ -13,6 +13,8 @@ EVENT_TYPES=(
 	application_front_switched
 	application_visible
 	application_hidden
+	window_minimized
+	window_deminimized
 	window_created
 	window_destroyed
 	window_focused
