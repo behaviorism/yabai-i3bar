@@ -1,3 +1,6 @@
+# Set padding for all workspaces on startup
+# Return settings that will be set in the widget context
+
 yabai_path=$1
 
 if ! pgrep -x yabai > /dev/null; then

@@ -35,3 +35,5 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
   "tabs-bar-padding": 19
 }
 ```
+
+**Settings are loaded on start-up. To refresh the settings: `Press on the Übersicht icon > Refresh All Widgets`**
