@@ -1,13 +1,10 @@
 // eslint-disable-next-line import/no-unresolved
-import { css, run } from "uebersicht";
+import { css, run, React } from "uebersicht";
 
-const WIDGET_ID = "yabai-i3bar-index-jsx";
+const WIDGET = "yabai-i3bar";
+const WIDGET_ID = `${WIDGET}-index-jsx`;
 const YABAI_PATH = "/usr/local/bin/yabai";
 
-export const command = `sh ${WIDGET_ID.replace(
-  "-index-jsx",
-  ""
-)}/command.sh ${WIDGET_ID} ${YABAI_PATH}`;
 export const refreshFrequency = false;
 
 const statusBar = css({
@@ -41,6 +38,29 @@ const focusedTab = css({
   textOverflow: "ellipsis",
 });
 
+// Default configuration
+let configuration = {
+  "tabs-bar-padding": 19,
+};
+
+// Set padding and get configuration
+export const init = () =>
+  run(`sh ${WIDGET}/scripts/init.sh ${YABAI_PATH}`).then((rawConfiguration) => {
+    let parsedConfiguration = {};
+
+    try {
+      parsedConfiguration = JSON.parse(rawConfiguration);
+    } catch (error) {}
+
+    configuration = { ...configuration, ...parsedConfiguration };
+
+    run(
+      `osascript -e 'tell application id "tracesOf.Uebersicht" to refresh widget id "${WIDGET_ID}"'`
+    );
+  });
+
+export const command = `sh ${WIDGET}/scripts/command.sh ${WIDGET_ID} ${YABAI_PATH} ${configuration["tabs-bar-padding"]}`;
+
 export const render = ({ output }) => {
   const { windows, space } = JSON.parse(output);
 
@@ -49,7 +69,7 @@ export const render = ({ output }) => {
   // Even though were supposed to cover the tabs bar when layout isn't stacked,
   // we still keep it rendererd so that when switching spaces the bar space isn't empty
   // while it re-renders
-
+  1199;
   if (!isStacked) {
     return (
       <div className={statusBar}>

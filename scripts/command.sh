@@ -1,5 +1,6 @@
 app_id=$1
 yabai_path=$2
+padding=$3
 
 if ! pgrep -x yabai > /dev/null; then
 	echo "$yabai_path isn't running"
@@ -32,7 +33,7 @@ for event in ${EVENT_TYPES[@]}; do
 done
 
 # Add tabs bar padding while in stack mode, otherwise remove it
-$yabai_path -m signal --add event=window_resized action='space=(`yabai -m query --spaces --space | jq -r "pick(.type, .index) | .[] | @sh" | tr -d '\\\''`); if [ ${space[0]} = "stack" ]; then yabai -m config --space ${space[1]} top_padding 19; else yabai -m config --space ${space[1]} top_padding 0; fi' label="Change ${app_id} padding on layout change"
+$yabai_path -m signal --add event=window_resized action='space=(`yabai -m query --spaces --space | jq -r "pick(.type, .index) | .[] | @sh" | tr -d '\\\''`); if [ ${space[0]} = "stack" ]; then yabai -m config --space ${space[1]} top_padding $padding; else yabai -m config --space ${space[1]} top_padding 0; fi' label="Change ${app_id} padding on layout change"
 
 echo $(cat <<-EOF
 {
