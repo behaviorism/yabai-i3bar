@@ -18,14 +18,6 @@ git clone https://github.com/behaviorism/yabai-i3bar $HOME/Library/Application\ 
 
 This will prevent the tabs bar from covering windows. The tabs bar is still visibile even when not not in stacked mode in order to not leave an empty space when re-rendering the widget after switching to a stacked workspace.
 
-### Add Tabs Bar Padding
-
-```bash
-# Add tabs bar padding (adjust padding based on preference and borders)
-# We need to use padding instead of the external_bar because only padding can be adjusted
-yabai -m config top_padding 19
-```
-
 ## Settings
 
 To edit the settings create the file `~/.yabai-i3barrc`. The default settings are:
@@ -36,4 +28,4 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
 }
 ```
 
-**Settings are loaded on start-up. To refresh the settings: `Press on the Übersicht icon > Refresh All Widgets`**
+**Settings are loaded on start-up. To refresh the settings** `Press on the Übersicht icon > Refresh All Widgets`
