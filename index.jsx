@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import { css, run } from "uebersicht";
 
-const WIDGET_ID = "yabai-i3-tabbed-mode-index-jsx";
+const WIDGET_ID = "yabai-i3bar-index-jsx";
 const YABAI_PATH = "/usr/local/bin/yabai";
 
 export const command = `sh ${WIDGET_ID.replace(
@@ -44,23 +44,25 @@ const focusedTab = css({
 export const render = ({ output }) => {
   const { windows, space } = JSON.parse(output);
 
-  const activeWindows = windows.filter(
-    (window) => !window["is-minimized"] && !window["is-hidden"]
-  );
-
   const isStacked = space.type === "stack";
+
+  // Even though were supposed to cover the tabs bar when layout isn't stacked,
+  // we still keep it rendererd so that when switching spaces the bar space isn't empty
+  // while it re-renders
 
   if (!isStacked) {
     return (
       <div className={statusBar}>
-        <div className={focusedTab}>{activeWindows[0]?.title}</div>
+        <div className={unfocusedTab}>
+          <div style={{ visibility: "hidden" }}>placeholder</div>
+        </div>
       </div>
     );
   }
 
-  const sortedWindows = activeWindows.sort(
-    (a, b) => a["stack-index"] - b["stack-index"]
-  );
+  const sortedWindows = windows
+    .filter((window) => !window["is-minimized"] && !window["is-hidden"])
+    .sort((a, b) => a["stack-index"] - b["stack-index"]);
 
   return (
     <div className={statusBar}>

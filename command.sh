@@ -31,6 +31,9 @@ for event in ${EVENT_TYPES[@]}; do
     $yabai_path -m signal --add event=$event action="osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"${app_id}\"'" label="Refresh ${app_id} on ${event}"
 done
 
+# Add tabs bar padding while in stack mode, otherwise remove it
+$yabai_path -m signal --add event=window_resized action='space=(`yabai -m query --spaces --space | jq -r "pick(.type, .index) | .[] | @sh" | tr -d '\\\''`); if [ ${space[0]} = "stack" ]; then yabai -m config --space ${space[1]} top_padding 19; else yabai -m config --space ${space[1]} top_padding 0; fi' label="Change ${app_id} padding on layout change"
+
 echo $(cat <<-EOF
 {
 	"windows": $windows,
