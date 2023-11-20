@@ -15,13 +15,11 @@ merged_config=$(jq -n --argjson var1 "$default_config" --argjson var2 "$file_con
 
 paddings=($(echo "$merged_config" | jq -r '[."tabs-bar-padding", ."status-bar-padding"] | @sh'))
 
-$yabai_path -m config top_padding ${paddings[0]}
-$yabai_path -m config bottom_padding ${paddings[1]}
+spaces=($($yabai_path -m query --spaces | jq -r 'map(.index, .type) | .[] | @sh' | tr -d \'))
 
-for space in $($yabai_path -m query --spaces | jq 'map(.index) | .[]')
-do
-	$yabai_path -m config --space $space top_padding ${paddings[0]}
-	$yabai_path -m config --space $space bottom_padding ${paddings[1]}
+for ((i=0; i < ${#spaces[@]}; i+=2)); do
+	$yabai_path -m config --space ${spaces[i]} top_padding $([ "${spaces[i+1]}" == "stack" ] && echo ${paddings[0]} || echo 0)
+	$yabai_path -m config --space ${spaces[i]} bottom_padding ${paddings[1]}
 done
 
 echo $merged_config

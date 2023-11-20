@@ -34,7 +34,7 @@ for event in ${EVENT_TYPES[@]}; do
 done
 
 action='space=(`yabai -m query --spaces --space | jq -r "pick(.type, .index) | .[] | @sh" | tr -d '\\\''`); yabai -m config --space ${space[1]} top_padding $([ ${space[0]} == "stack" ] && '
-action+="echo ${padding} || echo 0)"
+action+="echo $padding || echo 0)"
 
 # Add tabs bar padding while in stack mode, otherwise remove it
 $yabai_path -m signal --add event=window_resized action="$action" label="Change ${app_id} padding on layout change"

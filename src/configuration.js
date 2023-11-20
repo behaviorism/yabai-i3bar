@@ -5,7 +5,7 @@ import { YABAI_PATH, WIDGET, WIDGET_ID } from "./constants";
 export let configuration = {};
 
 // Default configuration
-const DEFAULT_CONFIGURATION = {
+export const DEFAULT_CONFIGURATION = {
   "tabs-bar-padding": 17,
   "status-bar-padding": 23,
 };
@@ -20,9 +20,9 @@ export const initializeConfiguration = async () => {
 
   configuration = JSON.parse(rawConfiguration);
 
-  console.log(configuration);
-
   run(
     `osascript -e 'tell application id "tracesOf.Uebersicht" to refresh widget id "${WIDGET_ID}"'`
   );
+
+  return configuration;
 };
