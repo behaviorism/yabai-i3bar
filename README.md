@@ -30,4 +30,5 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
 ```
 
 **You don't NEED to create the configuration file. Default settings are applied in case of the configuration file or properties missing**
+
 **Settings are loaded on start-up. To refresh the settings** `Press on the Übersicht icon > Refresh All Widgets`
