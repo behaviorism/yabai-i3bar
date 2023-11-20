@@ -25,7 +25,7 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
 ```json
 {
     "tabs-bar-padding": 19
-	"status-bar-padding": 25
+	"status-bar-padding": 23
 }
 ```
 
