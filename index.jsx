@@ -11,12 +11,14 @@ export const command = `sh ${WIDGET}/scripts/command.sh ${WIDGET_ID} ${YABAI_PAT
 
 export const init = initializeConfiguration;
 
-export const render = ({ output, error }) => {
+export const render = ({ output }) => {
   const { windows, spaces } = JSON.parse(output);
+
+  const activeSpace = spaces.find((space) => space["has-focus"]);
 
   return (
     <>
-      <TabsBar windows={windows} space={spaces[0]} />
+      <TabsBar windows={windows} space={activeSpace} />
       <StatusBar spaces={spaces} />
     </>
   );

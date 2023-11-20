@@ -19,6 +19,7 @@ EVENT_TYPES=(
 	window_created
 	window_destroyed
 	window_focused
+	window_resized
 	window_title_changed
 	space_created
 	space_destroyed

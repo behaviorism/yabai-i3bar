@@ -1,7 +1,4 @@
-// eslint-disable-next-line import/no-unresolved
-import { run } from "uebersicht";
 import { tabsBar, focusedTab, unfocusedTab } from "../styles.js";
-import { YABAI_PATH } from "../constants.js";
 
 const TabsBar = ({ windows, space }) => {
   // Even though were supposed to cover the tabs bar when layout isn't stacked,
@@ -26,9 +23,6 @@ const TabsBar = ({ windows, space }) => {
       {sortedWindows.map((window, index) => {
         return (
           <div
-            onClick={() => {
-              run(`${YABAI_PATH} -m window --focus ${window.id}`);
-            }}
             key={index}
             className={window["has-focus"] ? focusedTab : unfocusedTab}
           >
