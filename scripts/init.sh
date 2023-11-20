@@ -8,13 +8,15 @@ if ! pgrep -x yabai > /dev/null; then
 	exit 0
 fi
 
-padding=$(cat ~/.yabai-i3barrc | jq '."tabs-bar-padding" // 19')
+paddings=($(cat ~/.yabai-i3barrc | jq -r '."tabs-bar-padding"=(."tabs-bar-padding" // 19) | ."status-bar-padding"=(."status-bar-padding" // 25)  | [."tabs-bar-padding", ."status-bar-padding"] | @sh'))
 
-$yabai_path -m config top_padding $padding
+$yabai_path -m config top_padding ${paddings[0]}
+$yabai_path -m config bottom_padding ${paddings[1]}
 
 for space in $($yabai_path -m query --spaces | jq 'map(.index) | .[]')
 do
-	$yabai_path -m config --space $space top_padding $padding
+	$yabai_path -m config --space $space top_padding ${paddings[0]}
+	$yabai_path -m config --space $space bottom_padding ${paddings[1]}
 done
 
 cat ~/.yabai-i3barrc
