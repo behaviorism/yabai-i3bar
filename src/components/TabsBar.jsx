@@ -26,7 +26,7 @@ const TabsBar = ({ windows, space }) => {
             key={index}
             className={window["has-focus"] ? focusedTab : unfocusedTab}
           >
-            {window.title}
+            {window.title || window.app}
           </div>
         );
       })}

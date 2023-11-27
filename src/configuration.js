@@ -8,6 +8,16 @@ export let configuration = {};
 export const DEFAULT_CONFIGURATION = {
   "tabs-bar-padding": 17,
   "status-bar-padding": 23,
+  tray: {
+    disk: {
+      enabled: false,
+      path: "/",
+    },
+    battery: {
+      enabled: false,
+      low_threshold: 10,
+    },
+  },
 };
 
 // Set padding and get configuration
