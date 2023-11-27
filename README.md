@@ -47,4 +47,6 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
 
 All desired modules have to be included in the configuration file and enabled. **By default, no modules are enabled.** The order order in which they will be shown on the tray will be based on the order they are placed in the configuration file.
 
+<hr>
+
 **Settings are loaded on start-up. To refresh the settings** `Press on the Übersicht icon > Refresh All Widgets`
