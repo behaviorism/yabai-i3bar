@@ -15,7 +15,14 @@ export const DEFAULT_CONFIGURATION = {
     },
     battery: {
       enabled: false,
-      low_threshold: 10,
+      min_threshold: 10,
+    },
+    cpu_usage: {
+      enabled: false,
+      max_threshold: 75,
+    },
+    time: {
+      enabled: true,
     },
   },
 };
@@ -28,11 +35,39 @@ export const initializeConfiguration = async () => {
     )}'`
   );
 
-  configuration = JSON.parse(rawConfiguration);
+  configuration = mergeDeep(
+    DEFAULT_CONFIGURATION,
+    JSON.parse(rawConfiguration)
+  );
 
   run(
     `osascript -e 'tell application id "tracesOf.Uebersicht" to refresh widget id "${WIDGET_ID}"'`
   );
 
   return configuration;
+};
+
+const isObject = (item) => {
+  return item && typeof item === "object" && !Array.isArray(item);
+};
+
+const mergeDeep = (target, ...sources) => {
+  if (!sources.length) return target;
+  const source = sources.shift();
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (isObject(source[key])) {
+        if (!target[key])
+          Object.assign(target, {
+            [key]: {},
+          });
+        mergeDeep(target[key], source[key]);
+      } else {
+        Object.assign(target, {
+          [key]: source[key],
+        });
+      }
+    }
+  }
+  return mergeDeep(target, ...sources);
 };

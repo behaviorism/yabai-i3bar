@@ -9,9 +9,9 @@ if ! pgrep -x yabai > /dev/null; then
 	exit 0
 fi
 
-file_config="$(cat ~/.yabai-i3barrc)"
+file_config=$(cat ~/.yabai-i3barrc) || "{}"
 
-merged_config=$(jq -n --argjson var1 "$default_config" --argjson var2 "$file_config" '$var1 + ($var2 // {})')
+merged_config=$(jq -n --argjson var1 "$default_config" --argjson var2 "$file_config" '$var1 + $var2')
 
 paddings=($(echo "$merged_config" | jq -r '[."tabs-bar-padding", ."status-bar-padding"] | @sh'))
 
@@ -22,4 +22,4 @@ for ((i=0; i < ${#spaces[@]}; i+=2)); do
 	$yabai_path -m config --space ${spaces[i]} bottom_padding ${paddings[1]}
 done
 
-echo $merged_config
+echo $file_config

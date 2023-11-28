@@ -3,6 +3,8 @@ import { React } from "uebersicht";
 import { configuration } from "../configuration.js";
 import getBattery from "../modules/battery.js";
 import getDisk from "../modules/disk.js";
+import getCpuUsage from "../modules/cpu_usage.js";
+import getTime from "../modules/time.js";
 
 export const ItemLevel = {
   Normal: 0,
@@ -10,10 +12,12 @@ export const ItemLevel = {
   Bad: 2,
 };
 
-const modulesToFunctions = Object.entries({
+const modulesToFunctions = {
   battery: getBattery,
   disk: getDisk,
-});
+  cpu_usage: getCpuUsage,
+  time: getTime,
+};
 
 const useTray = () => {
   const [tray, setTray] = React.useState([]);
@@ -21,9 +25,11 @@ const useTray = () => {
   const handleItems = () => {
     const newTray = [];
 
-    for (let [module, fn] of modulesToFunctions) {
-      if (configuration.tray[module].enabled) {
-        newTray.unshift(fn());
+    for (let module of Object.keys(configuration.tray)) {
+      let fn = modulesToFunctions[module];
+
+      if (fn && configuration.tray[module].enabled) {
+        newTray.push(fn());
       }
     }
 

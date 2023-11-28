@@ -11,7 +11,7 @@ const BatterySource = {
 const getBattery = async () => {
   const [percentage, source] = (
     await run(
-      `battery=$(pmset -g batt); percentage=$(echo "$battery" | grep -Eo "\\d+%" | cut -d% -f1); source=$(echo "$battery" | head -n 1 | cut -c19- | rev | cut -c 2- | rev); echo \"$percentage\n$source\"`
+      `battery=$(pmset -g batt); percentage=$(echo "$battery" | grep -Eo "\\d+%" | cut -d% -f1); source=$(echo "$battery" | head -n 1 | cut -c19- | rev | cut -c 2- | rev); echo "$percentage\n$source"`
     )
   ).split("\n");
 
@@ -19,19 +19,19 @@ const getBattery = async () => {
 
   switch (source) {
     case BatterySource.Charger:
-      sourceLabel = "⚡CHR";
+      sourceLabel = "⚡";
       break;
     case BatterySource.Battery:
-      sourceLabel = "🔋 BAT";
+      sourceLabel = "🔋";
       break;
     default:
-      sourceLabel = "? UNK";
+      sourceLabel = "?";
       break;
   }
 
   let level = ItemLevel.Good;
 
-  if (parseInt(percentage) < configuration.tray.battery.low_threshold) {
+  if (parseInt(percentage) <= configuration.tray.battery.min_threshold) {
     level = ItemLevel.Bad;
   }
 

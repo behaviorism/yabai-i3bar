@@ -35,7 +35,14 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
     },
     "battery": {
       "enabled": false,
-      "low_threshold": 10
+      "min_threshold": 10
+    },
+    "cpu_usage": {
+      "enabled": false,
+      "max_threshold": 75
+    },
+    "time": {
+      "enabled": true
     }
   }
 }
@@ -45,7 +52,7 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
 
 ### Tray Modules
 
-All desired modules have to be included in the configuration file and enabled. **By default, no modules are enabled.** The order order in which they will be shown on the tray will be based on the order they are placed in the configuration file.
+All desired modules have to be included in the configuration file and enabled. **By default, only time is enabled.** The order order in which they will be shown on the tray will be based on the order they are placed in the configuration file.
 
 <hr>
 
