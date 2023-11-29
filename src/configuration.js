@@ -13,13 +13,13 @@ export const DEFAULT_CONFIGURATION = {
       enabled: false,
       path: "/",
     },
-    battery: {
-      enabled: false,
-      min_threshold: 10,
-    },
     cpu_usage: {
       enabled: false,
       max_threshold: 75,
+    },
+    battery: {
+      enabled: false,
+      min_threshold: 10,
     },
     time: {
       enabled: true,

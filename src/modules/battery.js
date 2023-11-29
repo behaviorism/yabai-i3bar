@@ -19,13 +19,13 @@ const getBattery = async () => {
 
   switch (source) {
     case BatterySource.Charger:
-      sourceLabel = "⚡";
+      sourceLabel = "CHR ";
       break;
     case BatterySource.Battery:
-      sourceLabel = "🔋";
+      sourceLabel = "BAT ";
       break;
     default:
-      sourceLabel = "?";
+      sourceLabel = "? ";
       break;
   }
 
@@ -35,7 +35,7 @@ const getBattery = async () => {
     level = ItemLevel.Bad;
   }
 
-  return { level, text: `${sourceLabel} ${percentage}%` };
+  return { level, text: `${sourceLabel}${percentage}%` };
 };
 
 export default getBattery;

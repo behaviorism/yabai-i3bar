@@ -33,13 +33,13 @@ To edit the settings create the file `~/.yabai-i3barrc`. The default settings ar
       "enabled": false,
       "path": "/"
     },
-    "battery": {
-      "enabled": false,
-      "min_threshold": 10
-    },
     "cpu_usage": {
       "enabled": false,
       "max_threshold": 75
+    },
+    "battery": {
+      "enabled": false,
+      "min_threshold": 10
     },
     "time": {
       "enabled": true
