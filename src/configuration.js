@@ -1,8 +1,6 @@
 // eslint-disable-next-line import/no-unresolved
 import { run } from "uebersicht";
-import { YABAI_PATH, WIDGET, WIDGET_ID } from "./constants";
-
-export let configuration = {};
+import { YABAI_PATH, JQ_PATH, WIDGET, WIDGET_ID } from "./constants";
 
 // Default configuration
 export const DEFAULT_CONFIGURATION = {
@@ -27,10 +25,12 @@ export const DEFAULT_CONFIGURATION = {
   },
 };
 
+export let configuration = DEFAULT_CONFIGURATION;
+
 // Set padding and get configuration
 export const initializeConfiguration = async () => {
   const rawConfiguration = await run(
-    `sh ${WIDGET}/scripts/init.sh ${YABAI_PATH} '${JSON.stringify(
+    `sh ${WIDGET}/scripts/init.sh ${YABAI_PATH} ${JQ_PATH} '${JSON.stringify(
       DEFAULT_CONFIGURATION
     )}'`
   );
@@ -38,10 +38,6 @@ export const initializeConfiguration = async () => {
   configuration = mergeDeep(
     DEFAULT_CONFIGURATION,
     JSON.parse(rawConfiguration)
-  );
-
-  run(
-    `osascript -e 'tell application id "tracesOf.Uebersicht" to refresh widget id "${WIDGET_ID}"'`
   );
 
   return configuration;

@@ -7,9 +7,7 @@ const TabsBar = ({ windows, space }) => {
   if (space.type !== "stack") {
     return (
       <div className={tabsBar}>
-        <div className={unfocusedTab}>
-          <div style={{ visibility: "hidden" }}>placeholder</div>
-        </div>
+        <div className={unfocusedTab}>&nbsp;</div>
       </div>
     );
   }
