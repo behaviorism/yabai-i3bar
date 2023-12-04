@@ -24,4 +24,3 @@ EVENT_TYPES=(
 for event in ${EVENT_TYPES[@]}; do
     $yabai_path -m signal --add event=$event action="curl -d 'refresh' http://localhost:${port}" label="Refresh ${app_id} on ${event}"
 done
-

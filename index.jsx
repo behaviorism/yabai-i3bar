@@ -5,7 +5,7 @@ import {
   initializeConfiguration,
 } from "./src/configuration";
 import { YABAI_PATH, WIDGET, WIDGET_ID } from "./src/constants";
-import useRefresh from "./src/hooks/useRefresh.jsx";
+import useRefresh from "./src/hooks/useRefresh/useRefresh.jsx";
 import TabsBar from "./src/components/TabsBar.jsx";
 import StatusBar from "./src/components/StatusBar.jsx";
 

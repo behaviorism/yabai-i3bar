@@ -2,6 +2,10 @@
 
 [Übersicht](https://github.com/felixhageloh/uebersicht) widget of [i3bar](https://i3wm.org/i3bar/manpage.html) (i3 status bar and tabs bar) for [yabai](https://github.com/koekeishiya/yabai).
 
+## Requirements
+
+Have NodeJS installed.
+
 ## Installation
 
 Clone to widgets repository.
