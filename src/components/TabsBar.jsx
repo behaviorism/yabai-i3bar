@@ -18,16 +18,20 @@ const TabsBar = ({ windows, space }) => {
 
   return (
     <div className={tabsBar}>
-      {sortedWindows.map((window, index) => {
-        return (
-          <div
-            key={index}
-            className={window["has-focus"] ? focusedTab : unfocusedTab}
-          >
-            {window.title || window.app}
-          </div>
-        );
-      })}
+      {sortedWindows.length > 0 ? (
+        sortedWindows.map((window, index) => {
+          return (
+            <div
+              key={index}
+              className={window["has-focus"] ? focusedTab : unfocusedTab}
+            >
+              {window.title || window.app}
+            </div>
+          );
+        })
+      ) : (
+        <div className={unfocusedTab}>&nbsp;</div>
+      )}
     </div>
   );
 };
