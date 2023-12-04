@@ -2,6 +2,8 @@
 
 [Übersicht](https://github.com/felixhageloh/uebersicht) widget of [i3bar](https://i3wm.org/i3bar/manpage.html) (i3 status bar and tabs bar) for [yabai](https://github.com/koekeishiya/yabai).
 
+<img width="1440" alt="Screenshot 2023-12-04 at 06 02 14" src="https://github.com/behaviorism/yabai-i3bar/assets/59264215/a5a4b7b4-5c2f-4a0e-91b9-e2a6cf850025">
+
 ## Requirements
 
 Have NodeJS installed.
