@@ -16,12 +16,8 @@ export const init = async () => {
   }
 
   try {
-    console.log(
-      await run(`${NODE_PATH} ${WIDGET}/src/hooks/useRefresh/server.js &`)
-    );
-  } catch (error) {
-    console.log(error);
-  }
+    await run(`${NODE_PATH} ${WIDGET}/src/hooks/useRefresh/server.js &`);
+  } catch (error) {}
 
   ws = new WebSocket(`ws://localhost:${PORT}`);
 
